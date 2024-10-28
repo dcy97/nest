@@ -1,0 +1,28 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+// uuid mac地址+随机数+时间戳 55123123151-ea123-1231-123123123123
+// 分布式集群管理
+// web开发者推荐使用cuid 轻量级唯一id生成器
+// @db.LongText识别长文件
+// @Unique唯一
+
+model User {
+  id        String   @id @default(cuid()) //主键
+  name      String   @db.LongText
+  email     String   @unique
+  createdAt DateTime @default(now()) //数据库8小时时区问题
+  updatedAt DateTime @default(now()) @updatedAt //如果有变化自动更新时间
+}
