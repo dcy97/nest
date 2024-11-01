@@ -1,15 +1,24 @@
 import { Injectable } from '@nestjs/common';
 import { CreatePostDto } from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
+import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
 export class PostService {
+  //依赖注入
+  constructor(private readonly prisma: PrismaService) { }
   create(createPostDto: CreatePostDto) {
-    return 'This action adds a new post';
+    return this.prisma.post.create({
+      data: createPostDto
+    });
   }
 
   findAll() {
-    return `访问了post接口`;
+    return this.prisma.post.findMany({
+      include: {
+        user: true
+      }
+    });
   }
 
   findOne(id: number) {

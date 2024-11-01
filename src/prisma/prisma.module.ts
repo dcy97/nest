@@ -7,4 +7,4 @@ import { PrismaService } from './prisma.service';
   providers: [PrismaService], // 注册prismaService
   exports: [PrismaService], // 导出prismaService，以便其他模块使用
 })
-export class PrismaModule {}
+export class PrismaModule { }

@@ -15,6 +15,12 @@ nestjs是mvc框架，而nuxtjs和nextjs是spa框架，
 
 为json文件添加schema，可以验证json文件的格式是否正确，提供代码提示等功能
 
+### 安装nestjs
+
+````sh
+npm install -g @nestjs/cli
+```sh
+
 ### nest g --help
 
     | name          │ alias       │ description                                  │
@@ -40,7 +46,8 @@ nestjs是mvc框架，而nuxtjs和nextjs是spa框架，
 
 ### nest项目结构
 
-```
+````
+
     │
     │ nest-cli.json
     │ package.json
@@ -62,13 +69,13 @@ nestjs是mvc框架，而nuxtjs和nextjs是spa框架，
     │ │ │ |user.service.spec.ts
     │ │ │ |user.service.ts
 
-```
+````
 
 ### 安装prisma
 
 ```sh
 npm i prisma --save-dev
-```
+````
 
 初始化prisma
 
@@ -82,4 +89,10 @@ npx prisma init
 
 ```sh
 npx prisma migrate dev --name init
+```
+
+### 创建一个prisma service
+
+```sh
+nest g s prisma
 ```

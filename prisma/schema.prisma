@@ -18,11 +18,26 @@ datasource db {
 // web开发者推荐使用cuid 轻量级唯一id生成器
 // @db.LongText识别长文件
 // @Unique唯一
-
+//用户表
 model User {
   id        String   @id @default(cuid()) //主键
   name      String   @db.LongText
   email     String   @unique
+  createdAt DateTime @default(now()) //数据库8小时时区问题
+  updatedAt DateTime @default(now()) @updatedAt //如果有变化自动更新时间
+  posts     Post[] //表示多个文章 user->post
+}
+
+//文章表
+// 一对多关系 post->user 外键
+model Post {
+  id        String   @id @default(cuid())
+  title     String
+  content   String
+  published Boolean
+  userId    String? //外键 
+  //fields ：外键userId  references: 主键id
+  user      User?    @relation(fields: [userId], references: [id])
   createdAt DateTime @default(now()) //数据库8小时时区问题
   updatedAt DateTime @default(now()) @updatedAt //如果有变化自动更新时间
 }

@@ -1,0 +1,2 @@
+GET  http://localhost:3000/api/v1/user HTTP/1.1
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNtMnl3czgxMzAwMDAycGt2N203OThpZjMiLCJpYXQiOjE3MzA0NzYwODksImV4cCI6MTczMzA2ODA4OX0.ODnNXlvQWhglHBBhe3DVP_tOVTaHMo9HPHo3TKuJzbk
