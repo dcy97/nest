@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="btn1">url下载</button>
+    <button id="btn2">流下载</button>
+    <script>
+        const downloadBtn = document.getElementById('btn1');
+        downloadBtn.addEventListener('click', () => {
+            window.open('http://localhost:3000/api/v1/download');
+        });
+        const downloadBtn2 = document.getElementById('btn2');
+        downloadBtn2.addEventListener('click', () => {
+            fetch('http://localhost:3000/api/v1/download/stream').then(res => {
+                // 将流转换为Blob 或者arrayBuffer
+                return res.arrayBuffer();
+                // return res.blob();
+            }).then(res => {
+                const blob = new Blob([res], { contentType: 'image/jpg' });
+                const url = window.URL.createObjectURL(blob);// 创建一个url
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = '流下载.jpg';//设置下载文件名
+                a.click();
+                window.URL.revokeObjectURL(url);
+            })
+        });
+    </script>
+</body>
+
+</html>
